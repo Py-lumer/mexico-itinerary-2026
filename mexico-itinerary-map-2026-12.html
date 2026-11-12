@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="墨西哥 12月17日至30日行程地图：住宿、航班与城际大巴。" />
+  <title>墨西哥冬日漫游｜12.17—12.30</title>
+  <style>
+    :root { --ink:#16302c; --muted:#64736c; --cream:#f7f0e2; --paper:#fffbf3; --coral:#df634c; --ochre:#e6aa43; --jade:#4b907d; --night:#343766; --line:#d9cdb8; --shadow:0 18px 45px rgba(53,47,32,.12); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:radial-gradient(circle at 10% 0,#fffdf7 0 14%,transparent 42%), var(--cream); font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif; letter-spacing:.01em; }
+    button { font:inherit; }
+    .page { max-width:1180px; margin:auto; padding:26px 22px 56px; }
+    .eyebrow { margin:0 0 10px; color:var(--coral); font-size:.78rem; font-weight:800; letter-spacing:.15em; }
+    .hero { display:grid; grid-template-columns:1fr auto; gap:26px; align-items:end; padding:22px 0 28px; border-bottom:1px solid var(--line); }
+    h1 { max-width:690px; margin:0; font-family:Georgia,"Songti SC",serif; font-size:clamp(2.45rem,6vw,5.7rem); font-weight:500; line-height:.99; letter-spacing:-.05em; }
+    h1 em { color:var(--coral); font-style:normal; }
+    .lede { max-width:590px; margin:16px 0 0; color:var(--muted); font-size:1.02rem; line-height:1.7; }
+    .trip-stamp { min-width:150px; padding:15px 18px; border:2px solid var(--ink); border-radius:50% 47% 52% 45%; transform:rotate(-4deg); text-align:center; font-size:.85rem; line-height:1.55; background:#fff9eb; box-shadow:5px 6px 0 rgba(224,99,76,.18); }
+    .trip-stamp strong { display:block; font-family:Georgia,serif; font-size:1.24rem; }
+    .notice { display:flex; gap:12px; align-items:flex-start; padding:14px 16px; margin:22px 0; border:1px solid #e9d399; background:#fff6d9; border-radius:12px; color:#735827; font-size:.91rem; line-height:1.55; }
+    .notice b { flex:0 0 auto; }
+    .journey { display:grid; grid-template-columns:minmax(0,1.36fr) minmax(300px,.64fr); gap:22px; }
+    .map-card, .info-card, .section-card { background:var(--paper); border:1px solid rgba(150,121,73,.20); box-shadow:var(--shadow); border-radius:23px; overflow:hidden; }
+    .card-head { display:flex; justify-content:space-between; align-items:center; padding:19px 22px 0; gap:15px; }
+    h2 { margin:0; font-family:Georgia,"Songti SC",serif; font-size:1.47rem; font-weight:500; }
+    .legend { display:flex; flex-wrap:wrap; gap:9px 14px; color:var(--muted); font-size:.76rem; }
+    .legend i { display:inline-block; width:11px; height:11px; margin-right:4px; border-radius:50%; vertical-align:-1px; background:var(--coral); }
+    .legend .bus { border-radius:2px; background:var(--jade); }
+    .legend .night { background:var(--night); }
+    .map-wrap { position:relative; min-height:516px; padding:0 8px 8px; }
+    svg { display:block; width:100%; height:100%; min-height:500px; overflow:visible; }
+    .mexico-shape { fill:#f4e9ca; stroke:#d7c6a4; stroke-width:1.3; stroke-linejoin:round; }
+    .contour { fill:none; stroke:#e5d5b9; stroke-width:1.25; stroke-dasharray:3 6; }
+    .route { fill:none; stroke:var(--jade); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; opacity:.95; }
+    .route.night { stroke:var(--night); stroke-dasharray:8 7; }
+    .route.return { stroke:var(--coral); stroke-width:3.4; }
+    .transport-route { cursor:pointer; outline:none; }.route-hit { fill:none; stroke:transparent; stroke-width:18px; pointer-events:stroke; }.transport-route path { pointer-events:stroke; transition:stroke-width .18s ease,opacity .18s ease; }.transport-route:hover path,.transport-route:focus path { stroke-width:7px; opacity:1; }.transport-route:hover .route-hit,.transport-route:focus .route-hit { stroke-width:18px; }.transport-route.flight path { stroke-width:3px; }.transport-route.flight .route-hit,.transport-route.flight:hover .route-hit,.transport-route.flight:focus .route-hit { stroke-width:18px; }.transport-route.flight:hover .flight-line,.transport-route.flight:focus .flight-line { stroke-width:7px; opacity:1; }
+    .route-label { fill:#426d5f; font-size:11px; font-weight:700; letter-spacing:.02em; paint-order:stroke; stroke:#fffbf3; stroke-width:4px; stroke-linejoin:round; }
+    .route-label.night { fill:var(--night); }
+    .route-label.return { fill:var(--coral); }
+    .map-node { cursor:pointer; outline:none; }
+    .node-dot { fill:var(--paper); stroke:var(--coral); stroke-width:3.5; transition:.2s ease; }
+    .map-node[data-city="oaxaca"] .node-dot { stroke:var(--ochre); }
+    .map-node[data-city="queretaro"] .node-dot,.map-node[data-city="san-miguel"] .node-dot,.map-node[data-city="guanajuato"] .node-dot { stroke:var(--jade); }
+    .map-node:hover .node-dot,.map-node:focus .node-dot,.map-node.active .node-dot { fill:var(--coral); r:10; }
+    .map-node[data-city="oaxaca"].active .node-dot { fill:var(--ochre); }
+    .map-node[data-city="queretaro"].active .node-dot,.map-node[data-city="san-miguel"].active .node-dot,.map-node[data-city="guanajuato"].active .node-dot { fill:var(--jade); }
+    .city-label { fill:var(--ink); font-size:14px; font-weight:800; paint-order:stroke; stroke:#fffbf3; stroke-width:4px; stroke-linejoin:round; }
+    .city-date { fill:#6d7b72; font-size:11px; font-weight:600; paint-order:stroke; stroke:#fffbf3; stroke-width:4px; }
+    .flight-line { fill:none; stroke:var(--coral); stroke-width:2; stroke-dasharray:3 7; opacity:.8; }
+    .plane { font-size:22px; }
+    .map-note { position:absolute; left:25px; right:25px; bottom:17px; margin:0; padding:7px 10px; border-radius:8px; background:rgba(255,251,243,.92); color:var(--muted); font-size:.72rem; line-height:1.25; text-align:center; white-space:nowrap; }
+    .map-trip-card { position:absolute; top:24px; right:23px; z-index:3; width:257px; padding:14px; border:1px solid #dfd0b7; border-radius:14px; background:rgba(255,252,245,.97); box-shadow:0 12px 28px rgba(48,44,33,.18); opacity:0; transform:translateY(-7px); pointer-events:none; transition:opacity .18s ease,transform .18s ease; }.map-trip-card.open { opacity:1; transform:translateY(0); }.trip-kicker { color:var(--coral); font-size:.68rem; font-weight:850; letter-spacing:.08em; }.trip-route { display:grid; grid-template-columns:1fr 20px 1fr; align-items:center; gap:5px; margin:9px 0 10px; }.trip-route b { color:var(--jade); text-align:center; font-size:1rem; }.trip-route strong { display:block; color:var(--ink); font-size:.98rem; line-height:1.05; }.trip-route span { display:block; margin-top:3px; color:var(--muted); font-size:.69rem; font-weight:700; }.trip-detail { display:flex; justify-content:space-between; gap:8px; padding-top:9px; border-top:1px solid #eadfcb; color:#53665e; font-size:.74rem; }.trip-detail b { color:var(--ink); white-space:nowrap; }.transport-strip { display:none; }
+    .info-card { display:flex; flex-direction:column; }
+    .info-card .top-label { margin:24px 22px 0; color:var(--coral); font-size:.76rem; font-weight:800; letter-spacing:.1em; }
+    #city-name { margin:7px 22px 0; font-family:Georgia,"Songti SC",serif; font-size:2.1rem; font-weight:500; }
+    #city-meta { margin:2px 22px 16px; color:var(--muted); font-size:.9rem; }
+    .stay-list { margin:0; padding:0 22px 20px; list-style:none; }
+    .stay-list li { position:relative; padding:15px 0 15px 31px; border-top:1px solid #eee3cf; font-size:.92rem; line-height:1.55; }
+    .stay-list li:before { content:""; position:absolute; left:2px; top:20px; width:13px; height:13px; border:2px solid var(--jade); border-radius:4px; transform:rotate(45deg); }
+    .stay-list b { display:block; font-size:1rem; }
+    .city-prompt { margin:auto 22px 22px; padding:12px; border-radius:12px; background:#f2eadb; color:#6a7068; font-size:.8rem; line-height:1.5; }
+    .flight-panel { padding:20px 22px 23px; border-top:1px solid #eadfcb; background:linear-gradient(105deg,#f9f0e0,#fff8ee); }
+    .flight-panel h3 { margin:0 0 13px; font-size:.92rem; letter-spacing:.08em; }
+    .flight-row { display:grid; grid-template-columns:34px 1fr auto; gap:9px; align-items:center; padding:10px 0; border-top:1px dashed #dbccb4; font-size:.85rem; line-height:1.35; }
+    .flight-row:first-of-type { border-top:0; }
+    .flight-row time { color:var(--coral); font-weight:800; white-space:nowrap; }
+    .section { margin-top:30px; }
+    .section-title { display:flex; align-items:baseline; gap:12px; margin:0 0 13px; }
+    .section-title p { margin:0; color:var(--muted); font-size:.85rem; }
+    .bus-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .bus-card { position:relative; min-height:212px; padding:18px; background:var(--paper); border:1px solid rgba(150,121,73,.18); border-radius:18px; box-shadow:0 10px 28px rgba(53,47,32,.07); overflow:hidden; }
+    .bus-card.night { background:linear-gradient(145deg,#343766,#252954); color:#fffef5; border-color:#343766; }
+    .bus-card.night:after { content:"✦  ✦  ✦"; position:absolute; top:7px; right:11px; color:#e6d1a2; letter-spacing:3px; font-size:.7rem; }
+    .bus-date { color:var(--coral); font-size:.75rem; font-weight:800; letter-spacing:.08em; }
+    .night .bus-date { color:#f2d283; }
+    .bus-route { margin:10px 0 10px; font-family:Georgia,"Songti SC",serif; font-size:1.34rem; line-height:1.25; font-weight:500; }
+    .bus-route span { color:var(--jade); font-family:inherit; }
+    .night .bus-route span { color:#f1d183; }
+    .bus-price { margin-top:15px; font-size:1.23rem; font-weight:800; }
+    .bus-time { margin-top:5px; color:var(--muted); font-size:.8rem; line-height:1.42; }
+    .night .bus-time { color:#d6dae5; }
+    .night-pill { display:inline-block; padding:4px 8px; margin-top:12px; border:1px solid rgba(255,255,255,.38); border-radius:999px; color:#fff3b8; font-size:.7rem; font-weight:800; letter-spacing:.05em; }
+    .stay-timeline { padding:7px 25px 24px; }
+    .timeline-track { position:relative; display:grid; grid-template-columns:repeat(14,1fr); gap:3px; margin:22px 0 7px; }
+    .timeline-track:before { content:""; position:absolute; left:0; right:0; top:18px; height:1px; background:#d9cdb8; }
+    .day { position:relative; min-width:0; text-align:center; font-size:.66rem; color:var(--muted); }
+    .day b { display:block; position:relative; z-index:1; width:11px; height:11px; margin:12px auto 7px; border-radius:50%; background:#a9aaa0; border:2px solid var(--paper); }
+    .day em { display:block; height:12px; font-style:normal; overflow:visible; white-space:nowrap; transform:rotate(-47deg); transform-origin:top left; }
+    .stay-bars { display:flex; flex-direction:column; gap:9px; margin-top:54px; }
+    .stay-row { display:grid; grid-template-columns:118px 1fr; gap:10px; align-items:center; }
+    .stay-name { color:#40544c; font-size:.77rem; font-weight:700; line-height:1.2; }
+    .bar-area { position:relative; height:20px; border-radius:5px; background:repeating-linear-gradient(90deg,#f1eadb 0 calc((100% - 39px)/14),transparent calc((100% - 39px)/14) calc((100% - 39px)/14 + 3px)); }
+    .bar { position:absolute; top:1px; height:18px; border-radius:5px; background:var(--jade); box-shadow:inset 0 -2px rgba(0,0,0,.11); }
+    .bar.night { background:var(--night); background-image:radial-gradient(circle at 15% 35%,#f3d88c 0 1px,transparent 1.5px),radial-gradient(circle at 75% 60%,#f3d88c 0 1px,transparent 1.5px); }
+    .timeline-caption { margin:18px 0 0 128px; color:var(--muted); font-size:.78rem; line-height:1.5; }
+    .checks { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:30px; }
+    .check-card { padding:19px 21px; background:#eff5ee; border:1px solid #cfdfcc; border-radius:16px; }
+    .check-card.warning { background:#fff6dc; border-color:#ebd796; }
+    .check-card h3 { margin:0 0 8px; font-size:1rem; }
+    .check-card p { margin:0; color:#52645b; font-size:.85rem; line-height:1.65; }
+    .check-card.warning p { color:#725d2b; }
+    .bottom { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:26px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:.79rem; line-height:1.5; }
+    .actions { display:flex; gap:9px; flex-wrap:wrap; }
+    .action { border:1px solid #d6c5a8; border-radius:999px; padding:9px 13px; background:#fffbf3; color:var(--ink); cursor:pointer; font-size:.8rem; }
+    .action:hover { background:#f8eedb; }
+    .toast { position:fixed; left:50%; bottom:18px; z-index:10; padding:10px 14px; color:white; background:#263c35; border-radius:999px; transform:translate(-50%,120px); opacity:0; transition:.25s; font-size:.85rem; box-shadow:var(--shadow); }
+    .toast.show { transform:translate(-50%,0); opacity:1; }
+    @media (max-width:820px) { .page { padding:17px 15px 45px; } .hero { grid-template-columns:1fr; gap:17px; } .trip-stamp { justify-self:start; } .journey { grid-template-columns:1fr; } .map-wrap { min-height:435px; } svg { min-height:425px; } .bus-grid { grid-template-columns:repeat(2,1fr); } .timeline-track { gap:0; } .stay-timeline { padding:5px 16px 22px; } .stay-row { grid-template-columns:94px 1fr; } .timeline-caption { margin-left:104px; } .checks { grid-template-columns:1fr; } }
+    @media (max-width:520px) { h1 { font-size:3rem; } .card-head { align-items:flex-start; flex-direction:column; } .map-wrap { min-height:400px; } svg { min-height:390px; } .city-label { font-size:12px; } .city-date,.route-label { font-size:9px; } .bus-grid { grid-template-columns:1fr; } .bus-card { min-height:172px; } .stay-name { font-size:.68rem; } .stay-row { grid-template-columns:76px 1fr; gap:6px; } .timeline-caption { margin-left:82px; } .bottom { align-items:flex-start; flex-direction:column; } }
+    .flight-code { display:inline-block; margin:18px 22px 6px; padding:5px 9px; border-radius:999px; background:#f4e8d5; color:#9a4d39; font-size:.73rem; font-weight:800; letter-spacing:.05em; }
+    .flight-route { color:var(--ink); font-weight:750; }
+    .flight-time { color:var(--coral); font-size:.95rem; }
+    .atlas { scroll-margin-top:16px; }
+    .atlas-head { display:flex; justify-content:space-between; align-items:end; gap:18px; padding:23px 24px 14px; background:linear-gradient(105deg,#fffaf0,#f5e9d5); }
+    .atlas-kicker { margin:0 0 5px; color:var(--coral); font-size:.73rem; font-weight:800; letter-spacing:.13em; }
+    #atlas-city-name { margin:0; font-size:2.15rem; }
+    #atlas-city-meta { margin:4px 0 0; color:var(--muted); font-size:.9rem; }
+    .atlas-nav { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:7px; }
+    .atlas-nav button { padding:7px 10px; border:1px solid #dccdb5; border-radius:999px; background:#fffdf7; color:#4d665c; cursor:pointer; font-size:.77rem; }
+    .atlas-nav button.active,.atlas-nav button:hover { border-color:var(--jade); background:var(--jade); color:#fff; }
+    .atlas-grid { display:grid; grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr); }
+    .atlas-map-wrap { min-height:470px; padding:11px 9px 15px; border-right:1px solid #eee3cf; }
+    #city-local-map { min-height:435px; overflow:visible; }
+    .atlas-base { fill:#f1eadc; stroke:#d8c8ad; stroke-width:1.4; }
+    .atlas-block { fill:#eadfc8; opacity:.68; }
+    .atlas-road { fill:none; stroke:#fffdf7; stroke-width:8; opacity:.94; }
+    .atlas-road.thin { stroke-width:3.2; }
+    .atlas-road.major { stroke:#e6aa43; stroke-width:11; opacity:.72; }.atlas-road.route { stroke:#4b907d; stroke-width:6; opacity:.78; }.atlas-road.tunnel { stroke:#716c82; stroke-width:8; stroke-dasharray:8 6; opacity:.72; }
+    .atlas-park { fill:#d9ead5; stroke:#a9c7a3; stroke-width:1.2; }.atlas-water { fill:#cfe4e5; stroke:#8abfc2; stroke-width:1.5; }.atlas-hill { fill:none; stroke:#d5c399; stroke-width:2; stroke-dasharray:2 5; }.atlas-aqueduct { fill:none; stroke:#d6a75d; stroke-width:6; stroke-linecap:round; }.atlas-aqueduct-thin { fill:none; stroke:#fff7e8; stroke-width:2.3; stroke-dasharray:3 4; }.atlas-district { fill:#7c897f; font-size:10px; font-weight:800; letter-spacing:.07em; }
+    .atlas-title { fill:#8b978e; font-size:11px; font-weight:700; letter-spacing:.09em; }
+    .atlas-pin { cursor:pointer; outline:none; }
+    .atlas-pin circle { stroke:#fffdf7; stroke-width:2.7; filter:drop-shadow(0 2px 2px rgba(0,0,0,.18)); }
+    .atlas-pin text { fill:#fff; font-family:system-ui,sans-serif; font-size:10px; font-weight:800; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
+    .atlas-pin.hotel circle { fill:var(--coral); }.atlas-pin.station circle { fill:var(--jade); }.atlas-pin.airport circle { fill:#4a829a; }.atlas-pin.landmark circle { fill:var(--ochre); }.atlas-pin.selected circle { stroke:var(--ink); stroke-width:4; }
+    .atlas-caption { margin:0 10px; color:var(--muted); font-size:.74rem; line-height:1.45; }
+    .place-pane { padding:20px 19px 22px; }.place-pane h3 { margin:0 0 4px; font-size:1.05rem; }.place-sub { margin:0 0 12px; color:var(--muted); font-size:.78rem; line-height:1.45; }.place-list { display:grid; gap:7px; max-height:395px; overflow:auto; padding-right:3px; }
+    .place { display:grid; grid-template-columns:29px 1fr; gap:9px; padding:9px; border:1px solid #eee4d1; border-radius:11px; background:#fffdf8; cursor:pointer; text-decoration:none; color:inherit; }.place:hover,.place.selected { border-color:var(--jade); background:#f0f6f1; }.place-number { display:flex; align-items:center; justify-content:center; width:25px; height:25px; border-radius:50%; background:var(--ochre); color:#fff; font-size:.76rem; font-weight:800; }.place.hotel .place-number { background:var(--coral); }.place.station .place-number { background:var(--jade); }.place.airport .place-number { background:#4a829a; }.place-name { display:block; font-size:.83rem; font-weight:800; line-height:1.25; }.place-address { display:block; margin-top:3px; color:var(--muted); font-size:.71rem; line-height:1.36; }.atlas-note { margin:14px 19px 20px; padding:11px 12px; border-radius:11px; background:#f2eadb; color:#50665d; font-size:.78rem; line-height:1.5; }.atlas-note strong { display:block; margin-bottom:3px; color:var(--ink); }
+    .budget-panel { padding:24px; }.budget-top { display:grid; grid-template-columns:.84fr 1.16fr; gap:26px; align-items:center; padding-bottom:23px; border-bottom:1px solid #eadfca; }.budget-total { padding:24px 18px; border-radius:19px; background:var(--night); color:#fffaf0; }.budget-total p { margin:0; color:#deddf0; font-size:.78rem; letter-spacing:.06em; }.budget-total strong { display:block; margin:8px 0 3px; font-family:Georgia,"Songti SC",serif; font-size:3rem; font-weight:500; line-height:1; }.budget-total span { color:#dfdfeb; font-size:.8rem; }.budget-top h2 { font-size:1.9rem; }.budget-top > div:last-child p { margin:8px 0 0; color:var(--muted); font-size:.9rem; line-height:1.6; }.budget-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:21px; }.budget-item { min-height:112px; padding:14px; border-radius:14px; background:#f4ede0; border:1px solid #e8dcc8; }.budget-item b { display:block; font-size:.78rem; line-height:1.35; }.budget-item strong { display:block; margin-top:9px; color:var(--coral); font-family:Georgia,"Songti SC",serif; font-size:1.35rem; }.budget-item small { display:block; margin-top:4px; color:var(--muted); font-size:.67rem; line-height:1.35; }.budget-table { width:100%; margin-top:22px; border-collapse:collapse; font-size:.86rem; }.budget-table th,.budget-table td { padding:11px 8px; border-top:1px solid #eee4d1; text-align:left; }.budget-table th { color:var(--muted); font-size:.74rem; font-weight:700; }.budget-table td:last-child,.budget-table th:last-child { text-align:right; }.budget-table .budget-sum td { font-weight:850; color:var(--ink); background:#f7eedc; }
+    @media (max-width:820px) { .atlas-grid { grid-template-columns:1fr; }.atlas-map-wrap { border-right:0; border-bottom:1px solid #eee3cf; }.atlas-head { align-items:flex-start; flex-direction:column; }.atlas-nav { justify-content:flex-start; }.budget-top { grid-template-columns:1fr; gap:15px; }.budget-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:520px) { #city-local-map { min-height:330px; }.atlas-map-wrap { min-height:365px; }.budget-panel { padding:17px; }.budget-grid { grid-template-columns:1fr 1fr; } }
+    /* Compact transport layer */
+    .page { display:flex; flex-direction:column; }
+    .journey { grid-template-columns:1fr; }
+    .journey .info-card,#bus-schedule { display:none; }
+    .transport-strip { padding:16px 21px 21px; border-top:1px solid #eadfcb; background:linear-gradient(180deg,#fffcf5,#f7f0e3); }
+    .transport-heading { display:flex; align-items:baseline; gap:8px; margin-bottom:10px; color:var(--ink); }.transport-heading span { color:var(--coral); font-size:.9rem; }.transport-heading strong { font-size:.91rem; }.transport-heading small { margin-left:auto; color:var(--muted); font-size:.71rem; }
+    .flight-chips { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:9px; }.flight-chip { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:8px; padding:9px 11px; border:1px solid #eadccb; border-radius:10px; background:#fffdf8; }.flight-chip b { color:var(--coral); font-size:.76rem; letter-spacing:.04em; }.flight-chip span { color:#375249; font-size:.76rem; font-weight:700; }.flight-chip time { color:var(--muted); font-size:.71rem; white-space:nowrap; }
+    .bus-compact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }.bus-chip { min-height:84px; padding:10px 11px; border:1px solid #e8ddcc; border-radius:11px; background:#fffdf8; }.bus-chip.night { border-color:#454773; background:linear-gradient(145deg,#343766,#2b2d5b); color:#fffef6; }.bus-chip time { display:block; color:var(--coral); font-size:.67rem; font-weight:850; letter-spacing:.05em; }.bus-chip.night time { color:#f1d183; }.bus-chip p { display:flex; align-items:center; gap:7px; margin:6px 0 6px; line-height:1.04; }.bus-chip strong { display:block; color:var(--ink); font-size:.84rem; }.bus-chip.night strong { color:#fffef6; }.bus-chip strong small { display:block; margin-top:3px; color:#76867d; font-size:.63rem; font-weight:700; }.bus-chip.night strong small { color:#d9d9e5; }.bus-chip i { color:var(--jade); font-size:1rem; font-style:normal; }.bus-chip.night i { color:#f1d183; }.bus-chip em { display:block; color:var(--muted); font-size:.66rem; font-style:normal; }.bus-chip.night em { color:#d7d9e6; }
+    .budget-panel { order:90; }.bottom { order:100; }
+    @media (max-width:820px) { .bus-compact-grid { grid-template-columns:repeat(2,1fr); }.flight-chip { grid-template-columns:auto 1fr; }.flight-chip time { grid-column:2; }.map-wrap { min-height:455px; } }
+    @media (max-width:520px) { .transport-strip { padding:15px; }.flight-chips,.bus-compact-grid { grid-template-columns:1fr; }.bus-chip { min-height:75px; }.map-wrap { min-height:405px; }.map-wrap svg { min-height:395px; }.map-note { left:8px; right:8px; font-size:.54rem; letter-spacing:-.05em; }.map-trip-card { top:15px; right:15px; width:232px; padding:12px; }.trip-route strong { font-size:.89rem; } }
+    @media print { body { background:white; } .page { max-width:none; padding:0; } .bottom,.actions { display:none; } .map-card,.info-card,.section-card,.atlas,.budget-panel { box-shadow:none; break-inside:avoid; } .journey { grid-template-columns:1.35fr .65fr; } .atlas-grid { grid-template-columns:1.18fr .82fr; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">MÉXICO · WINTER 2026</p>
+        <h1>墨西哥的<br><em>14 天</em>，慢慢走</h1>
+        <p class="lede">12 月 17 日至 30 日 · 墨西哥城、瓦哈卡、克雷塔罗、圣米格尔与瓜纳华托。<br>点击地图城市，展开酒店、车站、机场与地标的位置图。</p>
+      </div>
+      <div class="trip-stamp"><strong>12.17 — 12.30</strong>14 天 · 13 晚<br>5 座城市 · 6 趟大巴</div>
+    </header>
+
+    <section class="journey" aria-label="路线地图与城市详情">
+      <article class="map-card">
+        <div class="card-head"><h2>一路向南，再向北</h2><div class="legend"><span><i></i>城市停留</span><span><i class="bus"></i>日间大巴</span><span><i class="night"></i>夜宿大巴</span></div></div>
+        <div class="map-wrap">
+          <svg viewBox="0 0 760 520" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">墨西哥旅行路线示意图</title><desc id="map-desc">从墨西哥城到瓦哈卡，再经墨西哥城、克雷塔罗、圣米格尔和瓜纳华托，最后回到墨西哥城。</desc>
+            <path class="mexico-shape" d="M123 104 C168 83 220 97 260 83 C299 69 333 78 359 101 C391 130 441 124 475 148 C518 178 560 162 603 179 C643 195 677 230 672 257 C669 280 632 286 604 277 C579 268 559 275 547 295 C530 323 493 326 466 317 C435 307 423 331 405 350 C379 378 344 371 323 389 C298 410 272 425 241 410 C208 394 178 382 157 352 C135 320 100 294 94 255 C90 220 113 195 110 169 C107 142 91 122 123 104Z" />
+            <path class="contour" d="M150 180 C260 135 390 190 520 165 M112 257 C243 225 346 290 492 255 M160 340 C288 313 366 350 451 325" />
+            <defs>
+              <marker id="arrow-day" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4b907d"/></marker>
+              <marker id="arrow-night" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#343766"/></marker>
+              <marker id="arrow-flight" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#df634c"/></marker>
+            </defs>
+            <g class="transport-route flight" data-trip="am409" tabindex="0" role="button" aria-label="AM409：纽约肯尼迪机场前往墨西哥城国际机场 T2"><path class="route-hit" d="M650 150 Q510 165 368 280"/><path class="flight-line" d="M650 150 Q510 165 368 280" marker-end="url(#arrow-flight)"/></g>
+            <g class="transport-route flight" data-trip="am14" tabindex="0" role="button" aria-label="AM14：墨西哥城国际机场 T2 前往圣保罗瓜鲁尔霍斯国际机场 T3"><path class="route-hit" d="M368 280 Q245 300 105 386"/><path class="flight-line" d="M368 280 Q245 300 105 386" marker-end="url(#arrow-flight)"/></g>
+            <g class="transport-route" data-trip="cdmx-oaxaca" tabindex="0" role="button" aria-label="ADO：墨西哥城 TAPO 前往瓦哈卡 ADO"><path class="route-hit" d="M368 280 Q448 301 462 402"/><path class="route night" d="M368 280 Q448 301 462 402" marker-end="url(#arrow-night)"/></g>
+            <g class="transport-route" data-trip="oaxaca-cdmx" tabindex="0" role="button" aria-label="ADO：瓦哈卡 ADO 返回墨西哥城 TAPO"><path class="route-hit" d="M462 402 Q392 372 368 280"/><path class="route night" d="M462 402 Q392 372 368 280" marker-end="url(#arrow-night)"/></g>
+            <g class="transport-route" data-trip="cdmx-queretaro" tabindex="0" role="button" aria-label="Primera Plus：墨西哥城 Norte 前往克雷塔罗 TAQ"><path class="route-hit" d="M368 280 Q355 205 304 168"/><path class="route" d="M368 280 Q355 205 304 168" marker-end="url(#arrow-day)"/></g>
+            <g class="transport-route" data-trip="queretaro-sma" tabindex="0" role="button" aria-label="ETN：克雷塔罗 TAQ 前往圣米格尔总站"><path class="route-hit" d="M304 168 Q287 134 238 130"/><path class="route" d="M304 168 Q287 134 238 130" marker-end="url(#arrow-day)"/></g>
+            <g class="transport-route" data-trip="sma-guanajuato" tabindex="0" role="button" aria-label="Primera Plus：圣米格尔前往瓜纳华托总站"><path class="route-hit" d="M238 130 Q224 101 184 102"/><path class="route" d="M238 130 Q224 101 184 102" marker-end="url(#arrow-day)"/></g>
+            <g class="transport-route" data-trip="guanajuato-cdmx" tabindex="0" role="button" aria-label="Primera Plus：瓜纳华托总站返回墨西哥城 Norte"><path class="route-hit" d="M184 102 Q252 224 368 280"/><path class="route" d="M184 102 Q252 224 368 280" marker-end="url(#arrow-day)"/></g>
+            <g class="map-node active" data-city="cdmx" tabindex="0" role="button" aria-label="墨西哥城，点击查看住宿" transform="translate(368 280)"><circle class="node-dot" r="8"/><text x="14" y="-8" class="city-label">墨西哥城</text><text x="14" y="8" class="city-date">12.17–19 · 12.23–24 · 12.29–30</text></g>
+            <g class="map-node" data-city="oaxaca" tabindex="0" role="button" aria-label="瓦哈卡，点击查看住宿" transform="translate(462 402)"><circle class="node-dot" r="8"/><text x="14" y="-8" class="city-label">瓦哈卡</text><text x="14" y="8" class="city-date">12.20–22</text></g>
+            <g class="map-node" data-city="queretaro" tabindex="0" role="button" aria-label="克雷塔罗，点击查看住宿" transform="translate(304 168)"><circle class="node-dot" r="8"/><text x="15" y="-14" class="city-label">克雷塔罗</text><text x="15" y="2" class="city-date">12.24–26</text></g>
+            <g class="map-node" data-city="san-miguel" tabindex="0" role="button" aria-label="圣米格尔，点击查看住宿" transform="translate(238 130)"><circle class="node-dot" r="8"/><text x="15" y="-14" class="city-label">圣米格尔</text><text x="15" y="2" class="city-date">12.26–28</text></g>
+            <g class="map-node" data-city="guanajuato" tabindex="0" role="button" aria-label="瓜纳华托，点击查看住宿" transform="translate(184 102)"><circle class="node-dot" r="8"/><text x="-15" y="-14" text-anchor="end" class="city-label">瓜纳华托</text><text x="-15" y="2" text-anchor="end" class="city-date">12.28–29</text></g>
+          </svg>
+          <p class="map-note">路线：墨西哥城 → 瓦哈卡 → 墨西哥城 → 克雷塔罗 → 圣米格尔 → 瓜纳华托 → 墨西哥城</p>
+          <aside id="map-trip-card" class="map-trip-card" aria-live="polite"></aside>
+        </div>
+        <div class="transport-strip" aria-label="航班与城际大巴">
+          <div class="transport-heading"><span>✈ / 🚌</span><strong>交通节点</strong><small>当地时间</small></div>
+          <div class="flight-chips"><div class="flight-chip"><b>AM409</b><span>纽约 JFK → 墨西哥城 MEX T2</span><time>12.17 · 14:50–19:35</time></div><div class="flight-chip"><b>AM14</b><span>墨西哥城 MEX T2 → 圣保罗 GRU T3</span><time>12.30 · 20:55–09:55 (+1)</time></div></div>
+          <div class="bus-compact-grid">
+            <div class="bus-chip night"><time>12.19 · ADO</time><p><strong>墨西哥城<small>TAPO</small></strong><i>→</i><strong>瓦哈卡<small>ADO</small></strong></p><em>22:00–05:00 · 1,004 MXN</em></div>
+            <div class="bus-chip night"><time>12.22 · ADO</time><p><strong>瓦哈卡<small>ADO</small></strong><i>→</i><strong>墨西哥城<small>TAPO</small></strong></p><em>22:00–05:00 · 1,004 MXN</em></div>
+            <div class="bus-chip"><time>12.24 · Primera Plus</time><p><strong>墨西哥城<small>Norte</small></strong><i>→</i><strong>克雷塔罗<small>TAQ</small></strong></p><em>19:20–22:10 · 563 MXN</em></div>
+            <div class="bus-chip"><time>12.26 · ETN</time><p><strong>克雷塔罗<small>TAQ</small></strong><i>→</i><strong>圣米格尔<small>总站</small></strong></p><em>14:20–15:50 · 194 MXN</em></div>
+            <div class="bus-chip"><time>12.28 · Primera Plus</time><p><strong>圣米格尔<small>All terminals</small></strong><i>→</i><strong>瓜纳华托<small>客运总站</small></strong></p><em>15:40–17:10 · 240 MXN</em></div>
+            <div class="bus-chip"><time>12.29 · Primera Plus</time><p><strong>瓜纳华托<small>客运总站</small></strong><i>→</i><strong>墨西哥城<small>Norte</small></strong></p><em>18:00–22:45 · 995 MXN</em></div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="info-card" aria-label="航班安排">
+        <p class="top-label">FLIGHT PLAN</p><h2>跨洲起落</h2><p id="city-meta">航班时间均为当地时间</p>
+        <span class="flight-code">AM409 · 12 月 17 日</span>
+        <div class="flight-panel"><div class="flight-row"><span>纽约</span><span class="flight-route">肯尼迪国际机场<br>→ 墨西哥城国际机场 T2</span><time class="flight-time">14:50 → 19:35</time></div></div>
+        <span class="flight-code">AM14 · 12 月 30 日</span>
+        <div class="flight-panel"><div class="flight-row"><span>离境</span><span class="flight-route">墨西哥城国际机场 T2<br>→ 圣保罗瓜鲁尔霍斯国际机场 T3</span><time class="flight-time">20:55 → 09:55 (+1)</time></div></div>
+        <p class="city-prompt"><strong>城市间移动</strong><br>两段夜宿大巴连接墨西哥城与瓦哈卡；之后一路向北，串联克雷塔罗、圣米格尔与瓜纳华托。</p>
+      </aside>
+    </section>
+
+    <section id="bus-schedule" class="section" aria-labelledby="bus-schedule-title">
+      <div class="section-title"><h2 id="bus-schedule-title">城际大巴时刻表</h2><p>6 段 · 4,000 MXN · 夜宿大巴 2 段</p></div>
+      <div class="bus-grid">
+        <article class="bus-card night"><div class="bus-date">12 月 19 日 · ADO</div><div class="bus-route">Mexico TAPO<br><span>→</span> Oaxaca</div><div class="bus-price">1,004 MXN</div><div class="bus-time">22:00–05:00 · 每 30 分钟</div><span class="night-pill">🌙 夜宿大巴</span></article>
+        <article class="bus-card night"><div class="bus-date">12 月 22 日 · ADO</div><div class="bus-route">Oaxaca<br><span>→</span> Mexico TAPO</div><div class="bus-price">1,004 MXN</div><div class="bus-time">22:00–05:00 · 每 30 分钟</div><span class="night-pill">🌙 夜宿大巴</span></article>
+        <article class="bus-card"><div class="bus-date">12 月 24 日 · Primera Plus</div><div class="bus-route">Ciudad de México, Norte<br><span>→</span> Querétaro, Terminal de Autobuses</div><div class="bus-price">563 MXN</div><div class="bus-time">19:20–22:10 · 每 40 分钟</div></article>
+        <article class="bus-card"><div class="bus-date">12 月 26 日 · ETN</div><div class="bus-route">Querétaro, Querétaro<br><span>→</span> San Miguel de Allende, Guanajuato</div><div class="bus-price">194 MXN</div><div class="bus-time">14:20–15:50</div></article>
+        <article class="bus-card"><div class="bus-date">12 月 28 日 · Primera Plus</div><div class="bus-route">San Miguel de Allende, All terminals<br><span>→</span> Guanajuato, Central de Autobuses</div><div class="bus-price">240 MXN</div><div class="bus-time">15:40–17:10</div></article>
+        <article class="bus-card"><div class="bus-date">12 月 29 日 · Primera Plus</div><div class="bus-route">Guanajuato, Central de Autobuses<br><span>→</span> Ciudad de México, Norte</div><div class="bus-price">995 MXN</div><div class="bus-time">18:00–22:45</div></article>
+      </div>
+    </section>
+
+    <section class="section section-card budget-panel" aria-labelledby="budget-title">
+      <div class="budget-top"><div class="budget-total"><p>14 天 · 单人 · 不含国际机票与额外活动</p><strong>¥10,879</strong><span>建议当地预算：¥11,000</span></div><div><h2 id="budget-title">旅行预算</h2><p>住宿已含两晚夜宿大巴；餐饮包含每天一顿平价餐、一顿正式餐，以及墨西哥城与瓦哈卡各一顿大餐。</p></div></div>
+      <div class="budget-grid"><article class="budget-item"><b>住宿</b><strong>¥4,903</strong><small>13 晚，含 2 晚夜宿大巴</small></article><article class="budget-item"><b>城际大巴</b><strong>¥714</strong><small>4 段日间大巴</small></article><article class="budget-item"><b>餐饮</b><strong>¥3,524</strong><small>26 顿正餐、饮料与小费</small></article><article class="budget-item"><b>车站／机场接送</b><strong>¥538</strong><small>14 段打车</small></article></div>
+      <table class="budget-table"><thead><tr><th>项目</th><th>人民币</th></tr></thead><tbody><tr><td>住宿（含两段夜宿大巴）</td><td>¥4,903</td></tr><tr><td>其余城际大巴</td><td>¥714</td></tr><tr><td>机场、车站接送打车</td><td>¥538</td></tr><tr><td>餐饮（含两顿大餐）</td><td>¥3,524</td></tr><tr><td>景点门票</td><td>¥775</td></tr><tr><td>游览期间市内交通</td><td>¥308</td></tr><tr><td>额外机动预算</td><td>¥117</td></tr><tr class="budget-sum"><td>合计</td><td>¥10,879</td></tr></tbody></table>
+    </section>
+
+    <section id="city-atlas" class="section section-card atlas" aria-live="polite">
+      <div class="atlas-head"><div><p class="atlas-kicker">CITY ATLAS</p><h2 id="atlas-city-name">墨西哥城</h2><p id="atlas-city-meta">三段停留 · 酒店、车站、机场与经典地标</p></div><nav id="atlas-nav" class="atlas-nav" aria-label="切换城市"></nav></div>
+      <div class="atlas-grid"><div class="atlas-map-wrap"><svg id="city-local-map" viewBox="0 0 640 430" role="img" aria-label="城市地点地图"></svg><p class="atlas-caption">圆点按地点类型区分：珊瑚色为酒店、绿色为城际车站、蓝色为机场、金色为地标。点击圆点或右侧清单即可定位。</p></div><aside class="place-pane"><h3>地点清单</h3><p class="place-sub">点击任何地点可在地图中定位，并打开外部地图。</p><div id="place-list" class="place-list"></div><div id="atlas-note" class="atlas-note"></div></aside></div>
+    </section>
+
+    <section class="section section-card" aria-labelledby="stay-title">
+      <div class="card-head"><h2 id="stay-title">住宿与夜行衔接</h2><div class="legend"><span>共 13 晚</span><span><i class="night"></i>夜宿大巴</span></div></div>
+      <div class="stay-timeline">
+        <div class="timeline-track" aria-hidden="true">
+          <div class="day"><b></b><em>17</em></div><div class="day"><b></b><em>18</em></div><div class="day"><b></b><em>19</em></div><div class="day"><b></b><em>20</em></div><div class="day"><b></b><em>21</em></div><div class="day"><b></b><em>22</em></div><div class="day"><b></b><em>23</em></div><div class="day"><b></b><em>24</em></div><div class="day"><b></b><em>25</em></div><div class="day"><b></b><em>26</em></div><div class="day"><b></b><em>27</em></div><div class="day"><b></b><em>28</em></div><div class="day"><b></b><em>29</em></div><div class="day"><b></b><em>30</em></div>
+        </div>
+        <div class="stay-bars">
+          <div class="stay-row"><div class="stay-name">Kali Centro<br>墨西哥城</div><div class="bar-area"><span class="bar" style="left:0%;width:14.28%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">夜宿大巴<br>前往瓦哈卡</div><div class="bar-area"><span class="bar night" style="left:14.28%;width:7.14%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">Hostal Central<br>瓦哈卡</div><div class="bar-area"><span class="bar" style="left:21.42%;width:14.28%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">夜宿大巴<br>返回墨西哥城</div><div class="bar-area"><span class="bar night" style="left:35.70%;width:7.14%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">Pure<br>墨西哥城</div><div class="bar-area"><span class="bar" style="left:42.84%;width:7.14%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">Hotel Mirage<br>克雷塔罗</div><div class="bar-area"><span class="bar" style="left:49.98%;width:14.28%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">Casa Maricela<br>圣米格尔</div><div class="bar-area"><span class="bar" style="left:64.26%;width:14.28%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">Casa de Pita<br>瓜纳华托</div><div class="bar-area"><span class="bar" style="left:78.54%;width:7.14%"></span></div></div>
+          <div class="stay-row"><div class="stay-name">Kali Escandón<br>墨西哥城</div><div class="bar-area"><span class="bar" style="left:85.68%;width:7.14%"></span></div></div>
+        </div>
+        <p class="timeline-caption">每一条代表当晚的住宿；12 月 17 日至 29 日晚共 13 晚。12 月 30 日为离境日，不计住宿。</p>
+      </div>
+    </section>
+
+    <footer class="bottom"><span>离线分享版 · 纯 HTML，无需网络即可浏览行程<br>墨西哥冬日漫游 · 12 月 17 日—30 日</span><div class="actions"><button class="action" id="share" type="button">分享行程</button><button class="action" id="copy" type="button">复制路线</button><button class="action" type="button" onclick="window.print()">打印 / 存为 PDF</button></div></footer>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script>
+    const cityData={
+      cdmx:{name:'墨西哥城',meta:'三段停留 · 3 家酒店 · 2 座城际车站 · 国际机场 T2',note:'市外地标：特奥蒂瓦坎金字塔 · Zona Arqueológica de Teotihuacán，Estado de México',points:[
+        ['墨西哥城 — Kali Centro','Luis Moya 111, Centro Histórico, Cuauhtémoc, 06070 CDMX','hotel',274,234],['墨西哥城 — Pure','Río Nilo 40, Cuauhtémoc, 06500 CDMX','hotel',166,250],['墨西哥城 — Kali Escandón','Av. José Martí 178, Escandón I Sección, Miguel Hidalgo, 11800 CDMX','hotel',136,355],['墨西哥城 — 国际机场 T2','Av. Capitán Carlos León s/n, Peñón de los Baños, 15620 CDMX','airport',560,225],['墨西哥城 — TAPO','Liga de Carreteros 77, 7 de Julio, Venustiano Carranza, 15390 CDMX','station',454,230],['墨西哥城 — Norte','Av. de los 100 Metros 4907, Magdalena de las Salinas, 07760 CDMX','station',290,65],['宪法广场（Zócalo）','Plaza de la Constitución, Centro Histórico, 06000 CDMX','landmark',337,228],['美术宫','Av. Juárez s/n, Centro Histórico, 06050 CDMX','landmark',300,210],['国立人类学博物馆','Av. Paseo de la Reforma s/n, Bosque de Chapultepec, 11580 CDMX','landmark',78,219],['查普尔特佩克城堡','Bosque de Chapultepec I Sección, Miguel Hidalgo, 11580 CDMX','landmark',110,248],['大神庙遗址','Seminario 8, Centro Histórico, 06060 CDMX','landmark',348,222],['特奥蒂瓦坎金字塔','Zona Arqueológica de Teotihuacán, Estado de México','landmark',575,58]]},
+      oaxaca:{name:'瓦哈卡',meta:'12 月 20—22 日 · Hostal Central · ADO 一等车站',note:'市外地标：蒙特阿尔班 · Monte Albán Archaeological Site，Oaxaca de Juárez 以西',points:[
+        ['瓦哈卡 — Hostal Central','Huzares 103, Centro, 68000 Oaxaca de Juárez, Oax.','hotel',280,240],['瓦哈卡 — ADO 一等车站','5 de Mayo 1018, Barrio de Jalatlaco, 68080 Oaxaca de Juárez, Oax.','station',435,90],['宪法广场（Zócalo）','Plaza de la Constitución, Centro, 68000 Oaxaca de Juárez, Oax.','landmark',222,250],['瓦哈卡主教座堂','Av. de la Independencia, Centro, 68000 Oaxaca de Juárez, Oax.','landmark',228,243],['圣多明各教堂与文化博物馆','C. Macedonio Alcalá s/n, Ruta Independencia, Centro, 68000 Oaxaca','landmark',212,194],['贝尼托·华雷斯市场','C. de Las Casas s/n, Centro, 68000 Oaxaca de Juárez, Oax.','landmark',235,270],['20 de Noviembre 市场','C. 20 de Noviembre 512, Centro, 68000 Oaxaca de Juárez, Oax.','landmark',248,278],['蒙特阿尔班','Monte Albán Archaeological Site, Oaxaca','landmark',74,355]]},
+      queretaro:{name:'克雷塔罗',meta:'12 月 24—26 日 · Hotel Mirage · TAQ',note:'城市地标集中在历史中心；Hotel Mirage 位于中心以南，TAQ 位于东南侧。',points:[
+        ['克雷塔罗 — Hotel Mirage','Av. Luis Pasteur Sur 277, Col. Mercurio, 76040 Santiago de Querétaro, Qro.','hotel',250,305],['克雷塔罗 — TAQ','Prol. Luis Vega y Monroy 800, Prados del Mirador, 76079 Santiago de Querétaro, Qro.','station',500,285],['武器广场','Plaza de Armas, Centro Histórico, 76000 Santiago de Querétaro, Qro.','landmark',210,170],['克雷塔罗地区博物馆','C. Corregidora Sur 3, Centro, 76000 Santiago de Querétaro, Qro.','landmark',188,192],['圣克鲁斯修道院','Independencia 56, Centro, 76000 Santiago de Querétaro, Qro.','landmark',235,184],['克雷塔罗渡槽','Av. de los Arcos, Carretas, 76050 Santiago de Querétaro, Qro.','landmark',365,155],['圣罗莎·德·维泰博教堂','José María Arteaga 89, Centro, 76000 Santiago de Querétaro, Qro.','landmark',170,150]]},
+      'san-miguel':{name:'圣米格尔',meta:'12 月 26—28 日 · Casa Maricela · 城际客运总站',note:'历史中心步行范围内串联圣米格尔天使长教堂、主花园与阿连德故居。',points:[
+        ['圣米格尔 — Casa Maricela','Jesús 41, Zona Centro, 37700 San Miguel de Allende, Gto.','hotel',265,215],['圣米格尔 — 客运总站','Calzada de la Estación de los Ferrocarriles 90, Centro, 37700 San Miguel de Allende, Gto.','station',420,350],['圣米格尔天使长教堂','Principal 8, Zona Centro, 37700 San Miguel de Allende, Gto.','landmark',290,190],['阿连德主花园','El Jardín, Zona Centro, 37700 San Miguel de Allende, Gto.','landmark',275,218],['阿连德故居历史博物馆','Cuna de Allende 1, Zona Centro, 37700 San Miguel de Allende, Gto.','landmark',300,235],['El Mirador','Salto de las Monjas, Zona Centro, 37700 San Miguel de Allende, Gto.','landmark',205,280],['纺织市场','Calle de la Aurora 48, Aurora, 37710 San Miguel de Allende, Gto.','landmark',345,170]]},
+      guanajuato:{name:'瓜纳华托',meta:'12 月 28—29 日 · Casa de Pita · 城际客运总站',note:'山城地标集中在中心峡谷；皮皮拉纪念碑位于 Teatro Juárez 以南的山坡上。',points:[
+        ['瓜纳华托 — Casa de Pita','Callejón de la Cabecita 26, Centro, 36000 Guanajuato, Gto.','hotel',260,218],['瓜纳华托 — 客运总站','Carretera Guanajuato–Silao 450, La Yerbabuena, 36230 Guanajuato, Gto.','station',480,350],['华雷斯剧院','De Sopena 10, Centro, 36000 Guanajuato, Gto.','landmark',235,230],['联合花园','Jardín de la Unión, Centro, 36000 Guanajuato, Gto.','landmark',245,245],['皮皮拉纪念碑','Cerro de San Miguel, Panorama, 36000 Guanajuato, Gto.','landmark',205,280],['格拉纳迪塔斯谷仓','Mendizábal 6, Centro, 36000 Guanajuato, Gto.','landmark',300,170],['接吻巷','Callejón del Beso, Centro, 36000 Guanajuato, Gto.','landmark',275,200],['木乃伊博物馆','Ex Hacienda del Coche s/n, Panteón, 36040 Guanajuato, Gto.','landmark',310,70]]}
+    };
+    let activeCity='cdmx',activePoint=0;
+    const atlas=document.querySelector('#city-atlas'),atlasName=document.querySelector('#atlas-city-name'),atlasMeta=document.querySelector('#atlas-city-meta'),atlasNav=document.querySelector('#atlas-nav'),localMap=document.querySelector('#city-local-map'),placeList=document.querySelector('#place-list'),atlasNote=document.querySelector('#atlas-note');
+    const mapURL=(name,address)=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name+' '+address)}`;
+    const cityBackgrounds={
+      cdmx:`<rect class="atlas-base" x="32" y="33" width="576" height="360" rx="21"/><rect class="atlas-park" x="55" y="120" width="117" height="157" rx="35"/><text class="atlas-district" x="73" y="200">CHAPULTEPEC</text><path class="atlas-road major" d="M52 255 C180 247 295 213 575 110"/><path class="atlas-road route" d="M48 285 C205 257 360 267 592 234"/><path class="atlas-road" d="M80 88 L550 88 M80 143 L550 143 M80 322 L550 322"/><path class="atlas-road thin" d="M235 55 L250 370 M330 55 L334 370 M420 55 L408 370"/><rect x="505" y="181" width="75" height="88" rx="8" fill="#dfe8ec" stroke="#9ec3cb"/><text class="atlas-district" x="516" y="228">AICM · T2</text><text class="atlas-district" x="245" y="225">CENTRO</text><text class="atlas-district" x="278" y="76">NORTE</text>`,
+      oaxaca:`<rect class="atlas-base" x="32" y="33" width="576" height="360" rx="21" fill="#f5ead8"/><path class="atlas-hill" d="M44 89 C100 121 101 230 44 294 M74 69 C144 120 141 290 74 356"/><path class="atlas-road route" d="M57 357 C124 314 151 289 213 258 C285 222 344 186 455 87"/><path class="atlas-road major" d="M115 306 C230 276 354 252 565 230"/><path class="atlas-road" d="M160 135 L407 135 M145 181 L431 181 M135 227 L448 227 M150 273 L416 273"/><path class="atlas-road thin" d="M185 107 L192 300 M245 107 L253 300 M304 107 L315 300 M362 107 L375 300"/><path class="atlas-block" d="M173 155 L386 145 L410 268 L162 283 Z"/><text class="atlas-district" x="232" y="122">CENTRO HISTÓRICO</text><text class="atlas-district" x="420" y="95">JALATLACO · ADO</text><text class="atlas-district" x="55" y="346">MONTE ALBÁN</text>`,
+      queretaro:`<rect class="atlas-base" x="32" y="33" width="576" height="360" rx="21" fill="#f3eadb"/><path class="atlas-road major" d="M565 316 C468 291 411 278 315 263 C210 245 140 250 71 283"/><path class="atlas-road route" d="M544 342 C449 295 358 235 235 191 C174 169 112 140 62 94"/><path class="atlas-road" d="M105 117 C174 93 253 107 306 156 C337 186 329 233 285 260 M126 303 C147 248 153 198 131 153"/><path class="atlas-road thin" d="M178 101 C160 170 185 237 248 278 M240 110 C218 173 231 228 286 253"/><path class="atlas-aqueduct" d="M309 125 C354 111 409 107 488 130"/><path class="atlas-aqueduct-thin" d="M322 135 q12 -26 24 0 q12 -26 24 0 q12 -26 24 0 q12 -26 24 0 q12 -26 24 0 q12 -26 24 0"/><text class="atlas-district" x="160" y="84">CENTRO HISTÓRICO</text><text class="atlas-district" x="364" y="98">LOS ARCOS</text><text class="atlas-district" x="477" y="335">TAQ</text>`,
+      'san-miguel':`<rect class="atlas-base" x="32" y="33" width="576" height="360" rx="21" fill="#f5e7d3"/><path class="atlas-hill" d="M53 100 C143 52 190 88 245 49 M52 145 C136 104 178 129 243 90 M400 81 C469 43 534 78 593 54 M397 125 C477 91 533 117 594 95"/><path class="atlas-road route" d="M568 358 C464 321 393 280 325 231 C257 183 179 149 74 133"/><path class="atlas-road major" d="M76 290 C169 265 236 221 298 189 C379 148 460 151 569 205"/><path class="atlas-road" d="M175 125 C225 137 319 151 370 196 C404 225 391 264 343 281 C276 305 193 284 155 246 C123 214 128 159 175 125"/><path class="atlas-road thin" d="M205 105 C199 165 231 246 289 296 M315 97 C300 156 341 229 390 257"/><text class="atlas-district" x="193" y="116">CENTRO HISTÓRICO</text><text class="atlas-district" x="84" y="304">MIRADOR</text><text class="atlas-district" x="455" y="353">TERMINAL</text>`,
+      guanajuato:`<rect class="atlas-base" x="32" y="33" width="576" height="360" rx="21" fill="#eee5d3"/><path class="atlas-hill" d="M57 94 C122 65 167 67 219 103 C263 133 307 130 351 91 C401 47 477 61 586 105 M49 139 C114 107 165 113 206 146 C258 187 321 181 373 139 C423 99 497 110 591 151 M53 307 C145 274 216 293 270 328 C348 379 439 342 587 291"/><path class="atlas-road route" d="M56 252 C137 217 182 226 233 248 C296 275 343 267 392 225 C444 180 507 166 585 184"/><path class="atlas-road tunnel" d="M65 270 C135 241 181 254 229 274 C302 303 371 284 426 239 C487 188 535 191 584 208"/><path class="atlas-road major" d="M542 359 C474 325 415 293 360 255 C306 219 244 180 177 146"/><path class="atlas-road thin" d="M163 83 C171 167 153 250 114 334 M249 79 C276 139 267 227 241 326 M342 72 C356 145 341 217 309 306"/><text class="atlas-district" x="192" y="135">CENTRO</text><text class="atlas-district" x="72" y="242">CALLE SUBTERRÁNEA</text><text class="atlas-district" x="167" y="316">CERRO DE SAN MIGUEL</text><text class="atlas-district" x="473" y="354">TERMINAL</text>`
+    };
+    function renderLocalMap(){const city=cityData[activeCity],background=cityBackgrounds[activeCity];const pins=city.points.map((p,i)=>`<g class="atlas-pin ${p[2]} ${i===activePoint?'selected':''}" data-index="${i}" tabindex="0" role="button" aria-label="${p[0]}" transform="translate(${p[3]} ${p[4]})"><circle r="13"/><text y=".8">${i+1}</text></g>`).join('');localMap.innerHTML=`${background}<text class="atlas-title" x="58" y="69">${city.name.toUpperCase()} · 地点地图</text>${pins}`;localMap.querySelectorAll('.atlas-pin').forEach(pin=>{pin.addEventListener('click',()=>setPoint(Number(pin.dataset.index)));pin.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setPoint(Number(pin.dataset.index))}})});}
+    function renderPlaces(){const city=cityData[activeCity];placeList.innerHTML=city.points.map((p,i)=>`<a class="place ${p[2]} ${i===activePoint?'selected':''}" data-index="${i}" href="${mapURL(p[0],p[1])}" target="_blank" rel="noopener"><span class="place-number">${i+1}</span><span><span class="place-name">${p[0]}</span><span class="place-address">${p[1]}</span></span></a>`).join('');placeList.querySelectorAll('.place').forEach(el=>{el.addEventListener('mouseenter',()=>setPoint(Number(el.dataset.index),true));el.addEventListener('focus',()=>setPoint(Number(el.dataset.index),true));});atlasNote.innerHTML=`<strong>${city.note.split('：')[0]}</strong>${city.note.includes('：')?city.note.split('：').slice(1).join('：'):''}`;}
+    function renderNav(){atlasNav.innerHTML=Object.entries(cityData).map(([key,city])=>`<button class="${key===activeCity?'active':''}" data-city="${key}" type="button">${city.name}</button>`).join('');atlasNav.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>setCity(button.dataset.city,true)));}
+    function setPoint(index,fromList=false){activePoint=index;renderLocalMap();if(fromList){placeList.querySelectorAll('.place').forEach(item=>item.classList.toggle('selected',Number(item.dataset.index)===index));}else{renderPlaces();}}
+    function setCity(key,scroll){activeCity=key;activePoint=0;const city=cityData[key];atlasName.textContent=city.name;atlasMeta.textContent=city.meta;document.querySelectorAll('.map-node').forEach(node=>node.classList.toggle('active',node.dataset.city===key));renderNav();renderLocalMap();renderPlaces();if(scroll)atlas.scrollIntoView({behavior:'smooth',block:'start'});}
+    document.querySelectorAll('.map-node').forEach(node=>{node.addEventListener('click',()=>setCity(node.dataset.city,true));node.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();setCity(node.dataset.city,true)}});});
+    const tripData={
+      am409:{kind:'航班 · AM409',from:'纽约',fromStop:'JFK',to:'墨西哥城',toStop:'MEX T2',time:'12.17 · 14:50–19:35',fare:'抵达航班'},
+      am14:{kind:'航班 · AM14',from:'墨西哥城',fromStop:'MEX T2',to:'圣保罗',toStop:'GRU T3',time:'12.30 · 20:55–09:55 (+1)',fare:'离境航班'},
+      'cdmx-oaxaca':{kind:'夜宿大巴 · ADO',from:'墨西哥城',fromStop:'TAPO',to:'瓦哈卡',toStop:'ADO',time:'12.19 · 22:00–05:00',fare:'1,004 MXN'},
+      'oaxaca-cdmx':{kind:'夜宿大巴 · ADO',from:'瓦哈卡',fromStop:'ADO',to:'墨西哥城',toStop:'TAPO',time:'12.22 · 22:00–05:00',fare:'1,004 MXN'},
+      'cdmx-queretaro':{kind:'日间大巴 · Primera Plus',from:'墨西哥城',fromStop:'Norte',to:'克雷塔罗',toStop:'TAQ',time:'12.24 · 19:20–22:10',fare:'563 MXN'},
+      'queretaro-sma':{kind:'日间大巴 · ETN',from:'克雷塔罗',fromStop:'TAQ',to:'圣米格尔',toStop:'总站',time:'12.26 · 14:20–15:50',fare:'194 MXN'},
+      'sma-guanajuato':{kind:'日间大巴 · Primera Plus',from:'圣米格尔',fromStop:'All terminals',to:'瓜纳华托',toStop:'客运总站',time:'12.28 · 15:40–17:10',fare:'240 MXN'},
+      'guanajuato-cdmx':{kind:'日间大巴 · Primera Plus',from:'瓜纳华托',fromStop:'客运总站',to:'墨西哥城',toStop:'Norte',time:'12.29 · 18:00–22:45',fare:'995 MXN'}
+    };
+    const tripCard=document.querySelector('#map-trip-card');
+    function showTrip(key){const trip=tripData[key];tripCard.innerHTML=`<div class="trip-kicker">${trip.kind}</div><div class="trip-route"><div><strong>${trip.from}</strong><span>${trip.fromStop}</span></div><b>→</b><div><strong>${trip.to}</strong><span>${trip.toStop}</span></div></div><div class="trip-detail"><span>${trip.time}</span><b>${trip.fare}</b></div>`;tripCard.classList.add('open');}
+    document.querySelectorAll('.transport-route').forEach(route=>{route.addEventListener('mouseenter',()=>showTrip(route.dataset.trip));route.addEventListener('focus',()=>showTrip(route.dataset.trip));route.addEventListener('click',()=>showTrip(route.dataset.trip));route.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();showTrip(route.dataset.trip)}});});
+    const toast=document.querySelector('#toast');function say(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}
+    const itinerary='墨西哥冬日漫游｜12/17–12/30\n墨西哥城 → 瓦哈卡 → 墨西哥城 → 克雷塔罗 → 圣米格尔 → 瓜纳华托 → 墨西哥城';
+    document.querySelector('#copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(itinerary);say('路线已复制')}catch(error){say('请使用页面分享或手动复制')}});document.querySelector('#share').addEventListener('click',async()=>{try{if(navigator.share){await navigator.share({title:'墨西哥冬日漫游',text:itinerary})}else{await navigator.clipboard.writeText(itinerary);say('分享文字已复制')}}catch(error){}});setCity('cdmx',false);
+  </script>
+</body>
+</html>
