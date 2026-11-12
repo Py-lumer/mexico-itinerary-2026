@@ -25,6 +25,7 @@
     .map-card, .info-card, .section-card { background:var(--paper); border:1px solid rgba(150,121,73,.20); box-shadow:var(--shadow); border-radius:23px; overflow:hidden; }
     .card-head { display:flex; justify-content:space-between; align-items:center; padding:19px 22px 0; gap:15px; }
     h2 { margin:0; font-family:Georgia,"Songti SC",serif; font-size:1.47rem; font-weight:500; }
+    .map-hint { margin:5px 0 0; color:var(--muted); font-size:.72rem; letter-spacing:.02em; }
     .legend { display:flex; flex-wrap:wrap; gap:9px 14px; color:var(--muted); font-size:.76rem; }
     .legend i { display:inline-block; width:11px; height:11px; margin-right:4px; border-radius:50%; vertical-align:-1px; background:var(--coral); }
     .legend .bus { border-radius:2px; background:var(--jade); }
@@ -168,7 +169,7 @@
 
     <section class="journey" aria-label="路线地图与城市详情">
       <article class="map-card">
-        <div class="card-head"><h2>一路向南，再向北</h2><div class="legend"><span><i></i>城市停留</span><span><i class="bus"></i>日间大巴</span><span><i class="night"></i>夜宿大巴</span></div></div>
+        <div class="card-head"><div><h2>一路向南，再向北</h2><p class="map-hint">点击行程线路可查看具体信息</p></div><div class="legend"><span><i></i>城市停留</span><span><i class="bus"></i>日间大巴</span><span><i class="night"></i>夜宿大巴</span></div></div>
         <div class="map-wrap">
           <svg viewBox="0 0 760 520" role="img" aria-labelledby="map-title map-desc">
             <title id="map-title">墨西哥旅行路线示意图</title><desc id="map-desc">从墨西哥城到瓦哈卡，再经墨西哥城、克雷塔罗、圣米格尔和瓜纳华托，最后回到墨西哥城。</desc>
